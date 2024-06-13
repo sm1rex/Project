@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{%block title%} Post: {{ post.title }}  {% endblock %}
+
+{%block content%}
+    <h1>Detailed information</h1>
+    <h1> {{ post.title }} </h1>
+    <p> {{post.content}} </p>
+    {% if post.image_path %}
+    <img width="500" height="500" src="{{ url_for('static', filename='uploads/' ~ post.image_path.split('/')[-1 ] ) }}">
+    {% endif %}
+    <br>
+    <br>
+
+    <a href="{{ url_for('edit', post_id=post.id)}}">EDIT</a>
+    <a href="{{ url_for('delete', post_id=post.id) }}">DELETE</a>
+
+    <br>
+    <br>
+    <a href="/">Back to Home Page</a>
+{%endblock%}

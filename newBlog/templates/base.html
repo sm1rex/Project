@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="logo.jpg">
+    <title>{% block title%} {% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1> A blog website for Scoil Phadraig Naofa 6th class Students </h1>
+    </header>
+
+    <nav>
+        <ul>
+            {% if current_user.is_authenticated%}
+            <li> <a href="{{url_for('index') }}">Home Page</a> </li>
+            <li> <a href="{{url_for('add') }}">Add Info</a> </li>
+            <li> <a href="{{url_for('logout')}}">Logout</a></li>
+            {%else%}
+            <li> <a href="{{url_for('login') }}">Login</a> </li>
+            <li> <a href="{{url_for('register')}}">Register</a></li>
+            {%endif%}
+        </ul>
+    </nav>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+
+    <footer>
+        <p>Posted with Heroku</p>
+    </footer>
+</body>
+</html>
